@@ -56,6 +56,9 @@ public class BattleSolver {
             nodesExpanded++;
             generateTree(childNode);
             childNode.updateParentValue();
+            if(node.ab && node.alpha >= node.beta){
+                break;
+        }
 
         }
 

@@ -32,8 +32,8 @@ public class Node {
         this.armyBDamages = armyBDamages;
         this.turn = turn;
         this.ab=ab;
-        this.alpha = parent==null ? -1 : parent.alpha;
-        this.beta = parent==null ? 1 : parent.beta;
+        this.alpha = parent==null ? Integer.MIN_VALUE : parent.alpha;
+        this.beta = parent==null ? Integer.MAX_VALUE : parent.beta;
         this.parent= parent;
         this.value= turn.equals("A") ? Integer.MIN_VALUE : Integer.MAX_VALUE;
 
@@ -114,6 +114,9 @@ public class Node {
                     this.parent.planSoFar.clear();
                     this.parent.planSoFar.addAll(this.planSoFar);
                     this.parent.planSoFar.addFirst(this.actionExecuted);
+                    if(this.parent.ab && this.value < this.parent.beta){
+                        this.parent.beta = this.value;
+                    }
                 }
             } else {
                 if(this.parent.value < this.value){
@@ -121,6 +124,9 @@ public class Node {
                     this.parent.planSoFar.clear();
                     this.parent.planSoFar.addAll(this.planSoFar);
                     this.parent.planSoFar.addFirst(this.actionExecuted);
+                    if(this.parent.ab && this.value > this.parent.alpha){
+                        this.parent.alpha = this.value;
+                    }
                 }
             }
         }
