@@ -116,13 +116,14 @@ public class Node {
             if(this.turn.equals("A")){
                 if(this.parent.value > this.value){
                     this.parent.value = this.value;
+                    this.parent.planSoFar.addFirst(this.actionExecuted);
                 }
             } else {
                 if(this.parent.value < this.value){
                     this.parent.value = this.value;
+                    this.parent.planSoFar.addFirst(this.actionExecuted);
                 }
             }
-            this.parent.planSoFar.addFirst(this.actionExecuted);
         }
     }
     public int getValue() {
