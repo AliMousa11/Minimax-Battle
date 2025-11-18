@@ -21,8 +21,9 @@ public class BattleSolver {
             if (newArmyBHealths[defenderIndex] < 0) {
                 newArmyBHealths[defenderIndex] = 0;
             }
-            node.setActionExecuted(action);
-            return new Node(node.parent, node.armyAHealths, newArmyBHealths, node.armyADamages, node.armyBDamages, "B");
+            Node newNode=new Node(node, node.armyAHealths, newArmyBHealths, node.armyADamages, node.armyBDamages, "B");
+            newNode.setActionExecuted(action);
+            return newNode;
 
         } else if(currentTurn.equals("B")) {
             int attackerIndex = action.attackerIndex;
@@ -33,8 +34,9 @@ public class BattleSolver {
             if (newArmyAHealths[defenderIndex] < 0) {
                 newArmyAHealths[defenderIndex] = 0;
             }
-            node.setActionExecuted(action);
-            return new Node(node, newArmyAHealths, node.armyBHealths, node.armyADamages, node.armyBDamages, "A");
+            Node newNode=new Node(node, newArmyAHealths, node.armyBHealths, node.armyADamages, node.armyBDamages, "A");
+            newNode.setActionExecuted(action);
+            return newNode;
         }
 
         // If the turn is neither "A" nor "B", return the original node unchanged.
@@ -82,7 +84,7 @@ public class BattleSolver {
 
             this.initialNode= new Node (null, armyAHealths, armyBHealths, armyADamages, armyBDamages, turn);
         }else{
-            this.initialNode= new Node (null, armyAHealths, armyBHealths, armyADamages, armyBDamages, turn, -1, 1);
+            this.initialNode= new Node (null, armyAHealths, armyBHealths, armyADamages, armyBDamages, turn, -1, 1,true);
         }
         
         generateTree(this.initialNode);

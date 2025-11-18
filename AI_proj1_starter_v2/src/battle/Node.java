@@ -33,12 +33,13 @@ public class Node {
         this.parent= parent;
 
     }
-    public Node ( Node parent, int[] armyAHealths, int[] armyBHealths, int[] armyADamages, int[] armyBDamages, String turn, int alpha, int beta) {
+    public Node ( Node parent, int[] armyAHealths, int[] armyBHealths, int[] armyADamages, int[] armyBDamages, String turn, int alpha, int beta,boolean ab) {
         this.armyAHealths = armyAHealths;
         this.armyBHealths = armyBHealths;
         this.armyADamages = armyADamages;
         this.armyBDamages = armyBDamages;
         this.turn = turn;
+        this.ab=ab;
         this.alpha = alpha;
         this.beta = beta;
         this.parent= parent;
