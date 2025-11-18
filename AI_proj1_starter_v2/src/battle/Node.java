@@ -24,25 +24,16 @@ public class Node {
     
 
 
-    public Node ( Node parent, int[] armyAHealths, int[] armyBHealths, int[] armyADamages, int[] armyBDamages, String turn) {
-        this.armyAHealths = armyAHealths;
-        this.armyBHealths = armyBHealths;
-        this.armyADamages = armyADamages;
-        this.armyBDamages = armyBDamages;
-        this.turn = turn;
-        this.parent= parent;
-        this.value= turn.equals("A") ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-
-    }
-    public Node ( Node parent, int[] armyAHealths, int[] armyBHealths, int[] armyADamages, int[] armyBDamages, String turn, int alpha, int beta,boolean ab) {
+    
+    public Node ( Node parent, int[] armyAHealths, int[] armyBHealths, int[] armyADamages, int[] armyBDamages, String turn,boolean ab) {
         this.armyAHealths = armyAHealths;
         this.armyBHealths = armyBHealths;
         this.armyADamages = armyADamages;
         this.armyBDamages = armyBDamages;
         this.turn = turn;
         this.ab=ab;
-        this.alpha = alpha;
-        this.beta = beta;
+        this.alpha = parent==null ? -1 : parent.alpha;
+        this.beta = parent==null ? 1 : parent.beta;
         this.parent= parent;
         this.value= turn.equals("A") ? Integer.MIN_VALUE : Integer.MAX_VALUE;
 

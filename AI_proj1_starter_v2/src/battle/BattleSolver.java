@@ -21,7 +21,7 @@ public class BattleSolver {
             if (newArmyBHealths[defenderIndex] < 0) {
                 newArmyBHealths[defenderIndex] = 0;
             }
-            Node newNode=new Node(node, node.armyAHealths, newArmyBHealths, node.armyADamages, node.armyBDamages, "B");
+            Node newNode=new Node(node, node.armyAHealths, newArmyBHealths, node.armyADamages, node.armyBDamages, "B", node.ab);
             newNode.setActionExecuted(action);
             return newNode;
 
@@ -34,7 +34,7 @@ public class BattleSolver {
             if (newArmyAHealths[defenderIndex] < 0) {
                 newArmyAHealths[defenderIndex] = 0;
             }
-            Node newNode=new Node(node, newArmyAHealths, node.armyBHealths, node.armyADamages, node.armyBDamages, "A");
+            Node newNode=new Node(node, newArmyAHealths, node.armyBHealths, node.armyADamages, node.armyBDamages, "A", node.ab);
             newNode.setActionExecuted(action);
             return newNode;
         }
@@ -80,12 +80,7 @@ public class BattleSolver {
             armyBHealths[i/2]= Integer.parseInt(armyBString[i]);
             armyBDamages[i/2]= Integer.parseInt(armyBString[i+1]);
         }
-        if(!ab){
-
-            this.initialNode= new Node (null, armyAHealths, armyBHealths, armyADamages, armyBDamages, turn);
-        }else{
-            this.initialNode= new Node (null, armyAHealths, armyBHealths, armyADamages, armyBDamages, turn, -1, 1,true);
-        }
+            this.initialNode= new Node (null, armyAHealths, armyBHealths, armyADamages, armyBDamages, turn,  ab);
         
         generateTree(this.initialNode);
         String sol="";
