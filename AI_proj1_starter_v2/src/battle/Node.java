@@ -97,6 +97,7 @@ public class Node {
         return turn;
     }
     public void setLeafValue() {
+        this.value=0;
         if(this.turn.equals("A")){
             for (int health : this.armyBHealths) {
                 if (health > 0) {
@@ -119,11 +120,15 @@ public class Node {
             if(this.turn.equals("A")){
                 if(this.parent.value > this.value){
                     this.parent.value = this.value;
+                    this.parent.planSoFar.clear();
+                    this.parent.planSoFar.addAll(this.planSoFar);
                     this.parent.planSoFar.addFirst(this.actionExecuted);
                 }
             } else {
                 if(this.parent.value < this.value){
                     this.parent.value = this.value;
+                    this.parent.planSoFar.clear();
+                    this.parent.planSoFar.addAll(this.planSoFar);
                     this.parent.planSoFar.addFirst(this.actionExecuted);
                 }
             }
@@ -135,8 +140,13 @@ public class Node {
     }
     public String planSoFarToString(){
         StringBuilder sb = new StringBuilder();
+        int i=0;
         for(Action action : planSoFar){
-            sb.append(action.actionToString()+",");
+            sb.append(action.actionToString());
+            if(i<planSoFar.size()-1){
+                sb.append(",");
+            }
+            i++;
         }
         return sb.toString();
     }
