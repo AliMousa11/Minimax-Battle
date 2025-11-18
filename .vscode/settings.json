@@ -1,0 +1,7 @@
+{
+  "java.project.sourcePaths": ["AI_proj1_starter_v2\\src"],
+  "java.project.referencedLibraries": [
+    "AI_proj1_starter_v2\\src\\lib\\junit-jupiter-engine-5.14.1.jar",
+    "AI_proj1_starter_v2\\src\\lib\\junit-platform-console-standalone-6.0.0.jar"
+  ]
+}
