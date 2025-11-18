@@ -34,7 +34,7 @@ public class BattleSolver {
                 newArmyAHealths[defenderIndex] = 0;
             }
             node.setActionExecuted(action);
-            return new Node(node.parent, newArmyAHealths, node.armyBHealths, node.armyADamages, node.armyBDamages, "A");
+            return new Node(node, newArmyAHealths, node.armyBHealths, node.armyADamages, node.armyBDamages, "A");
         }
 
         // If the turn is neither "A" nor "B", return the original node unchanged.
@@ -88,9 +88,9 @@ public class BattleSolver {
         generateTree(this.initialNode);
         String sol="";
         String plan = this.initialNode.planSoFarToString();
-        sol+= plan + " ";
+        sol+= plan + ";";
         sol+= this.initialNode.getValue();
-        sol+= " " + nodesExpanded;
+        sol+= ";" + nodesExpanded;
         
         
 

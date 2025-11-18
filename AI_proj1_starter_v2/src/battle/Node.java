@@ -131,7 +131,7 @@ public class Node {
     public String planSoFarToString(){
         StringBuilder sb = new StringBuilder();
         for(Action action : planSoFar){
-            sb.append(action.actionToString());
+            sb.append(action.actionToString()+",");
         }
         return sb.toString();
     }
@@ -147,7 +147,7 @@ class Action{
         this.defenderIndex = defenderIndex;
     }
     public String actionToString(){
-       return this.turn + "( " + this.attackerIndex + ", " + this.defenderIndex + ") ";
+       return this.turn + "(" + this.attackerIndex + "," + this.defenderIndex + ")";
     }
 
 }
