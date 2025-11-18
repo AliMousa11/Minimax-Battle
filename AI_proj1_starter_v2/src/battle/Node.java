@@ -7,7 +7,7 @@ import java.util.LinkedList;
 public class Node {
 
     //you can add a state representation attribute or any other attributes you need
-    public int value=0;
+    public int value;
     public Node parent;
     public int[] armyAHealths;
     public int[] armyBHealths;
@@ -31,6 +31,7 @@ public class Node {
         this.armyBDamages = armyBDamages;
         this.turn = turn;
         this.parent= parent;
+        this.value= turn.equals("A") ? Integer.MIN_VALUE : Integer.MAX_VALUE;
 
     }
     public Node ( Node parent, int[] armyAHealths, int[] armyBHealths, int[] armyADamages, int[] armyBDamages, String turn, int alpha, int beta,boolean ab) {
@@ -43,6 +44,8 @@ public class Node {
         this.alpha = alpha;
         this.beta = beta;
         this.parent= parent;
+        this.value= turn.equals("A") ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+
     }
     
     public Action getActionExecuted() {
@@ -112,7 +115,7 @@ public class Node {
         }        
     }
     public void updateParentValue(){
-        if(this.parent != null && this.value != 0){
+        if(this.parent != null ){
             if(this.turn.equals("A")){
                 if(this.parent.value > this.value){
                     this.parent.value = this.value;
